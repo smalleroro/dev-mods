@@ -30,17 +30,17 @@ Baritone 的可视化控制面板与状态 HUD，Minecraft 1.20.1 / Forge 47.4.x
 
 ## 前置模组
 
-安装本模组前，请先装好以下前置：
+安装本模组前，请先装好以下前置，**两个都是必需**：
 
-| 前置 | 是否必需 | 说明 |
-|---|---|---|
-| [Kotlin for Forge](https://www.curseforge.com/minecraft/mc-mods/kotlin-for-forge) | **必需** | 本模组用 Kotlin 编写，`mods.toml` 首行声明 `modLoader="kotlinforforge"`，缺失时游戏无法加载 |
-| [Baritone](https://www.curseforge.com/minecraft/mc-mods/baritone) | 可选 | 缺失时界面照常打开，显示 `not installed`，不会崩溃 |
+| 前置 | 说明 |
+|---|---|
+| [Kotlin for Forge](https://www.curseforge.com/minecraft/mc-mods/kotlin-for-forge) | 本模组用 Kotlin 编写，`mods.toml` 首行声明 `modLoader="kotlinforforge"`，缺失时游戏无法加载 |
+| [Baritone](https://www.curseforge.com/minecraft/mc-mods/baritone) | 面板与 HUD 的全部功能都靠它。缺失时模组会在加载阶段校验失败并拒绝进入游戏，**不会**静默降级 |
 
 ## 依赖
 
-**运行时**：Baritone 本体，**可选**。模组通过反射桥接，Baritone 缺失时界面照常打开并显示
-`not installed`，不会崩溃。
+**运行时**：Baritone 本体，**必需**。`mods.toml` 中 `mandatory=true`，未安装时 Forge 会在
+加载阶段直接阻止启动并提示缺失的前置。
 
 **编译时**：需自备 `baritone-api-forge-1.10.5.jar` 放到 `libs/`。
 该 jar 为第三方组件，不随本仓库分发。

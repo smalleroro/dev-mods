@@ -141,8 +141,8 @@ Thumbs.db
 
 | 目录 | 说明 | 运行时依赖 |
 |---|---|---|
-| [`baritone-ui`](baritone-ui/) | Baritone 可视化控制面板与状态 HUD | Baritone 本体（可选，缺失时降级） |
-| [`rotationspoof`](rotationspoof/) | 外发朝向伪装，改写移动包 yaw/pitch | 无 |
+| [`baritone-ui`](baritone-ui/) | Baritone 可视化控制面板与状态 HUD | Kotlin for Forge、Baritone（均必需） |
+| [`rotationspoof`](rotationspoof/) | 外发朝向伪装，改写移动包 yaw/pitch | Kotlin for Forge（必需） |
 
 ## 构建
 

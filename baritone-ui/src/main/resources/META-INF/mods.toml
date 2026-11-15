@@ -35,10 +35,13 @@ ${mod_description}
     versionRange="${kff_loader_version_range}"
     ordering="NONE"
     side="BOTH"
-# Baritone -- OPTIONAL. When absent the UI degrades gracefully.
+# Baritone -- REQUIRED. The panel and HUD drive Baritone through its API; without
+# it the mod cannot function, so let Forge reject the load up front instead of
+# letting the player reach a half-broken UI. Loading order is AFTER so Baritone
+# has registered its provider by the time the bridge resolves it.
 [[dependencies.${mod_id}]]
     modId="baritone"
-    mandatory=false
+    mandatory=true
     versionRange="${baritone_version_range}"
     ordering="AFTER"
-    side="CLIENT"
+    side="BOTH"
