@@ -2,66 +2,139 @@
 
 Minecraft **1.20.1 / Forge 47.4.x** 自研模组源码与构建产物。
 
-## 仓库结构
+仓库由多人共同维护。**所有模组必须遵循下面这套目录规范**，新增模组时照抄示例结构，
+不要各自发明。
 
-一个模组一个目录，源码与成品 jar 放在一起：
+## 目录规范
+
+### 顶层
 
 ```
 dev-mods/
-├── baritone-ui/                 # Baritone 可视化控制面板 + 状态 HUD
-│   ├── src/main/kotlin/...      # Kotlin 源码
-│   ├── src/main/resources/...   # mods.toml、语言文件
-│   ├── build.gradle.kts
-│   ├── gradle.properties
-│   ├── gradlew / gradlew.bat
-│   └── build/libs/
-│       └── baritoneui-1.0.0+mc1.20.1.jar
-├── rotationspoof/               # 外发朝向伪装（客户端 Mixin）
-│   ├── src/main/java/...        # Mixin 注入代码
-│   ├── src/main/kotlin/...      # Kotlin 源码
-│   ├── src/main/resources/...   # mods.toml、mixins.json、语言文件
-│   ├── build.gradle.kts
-│   ├── gradle.properties
-│   ├── gradlew / gradlew.bat
-│   └── build/libs/
-│       └── rotationspoof-1.0.0+mc1.20.1.jar
+├── <module>/            # 一个模组一个目录，目录名 = 模组 ID（小写、连字符）
+├── <module>/
+├── docs/                # 跨模组的共享约定
+├── README.md
 └── LICENSE
 ```
 
-## baritone-ui
+顶层只放模组目录和这几个固定文件。**不允许**在根目录散落 jar、源码或临时文件。
 
-Baritone 的可视化控制面板（停止 / 前往 / 挖掘 / 跟随 / 探索 / 农耕）与左上角状态 HUD。
-挖掘预设支持多选，跨分类合并成一条 `#mine` 请求。
+### 单个模组目录（标准结构）
 
-**运行时依赖**：Baritone 本体（可选）。模组通过反射桥接，Baritone 缺失时降级显示
-`not installed`，不会崩溃。
+以 `baritone-ui` 为例：
 
-**编译依赖**：需要自备 `baritone-api-forge-1.10.5.jar` 放到 `libs/`。
-仓库不分发该 jar（第三方组件，无再分发授权）。
+```
+baritone-ui/
+├── src/
+│   └── main/
+│       ├── kotlin/com/<作者>/<module>/     # Kotlin 源码（Mixin 类除外）
+│       ├── java/com/<作者>/<module>/       # 仅放 Mixin 类，无则整目录省略
+│       └── resources/
+│           ├── META-INF/mods.toml          # 必需
+│           ├── <module>.mixins.json        # 仅含 Mixin 的模组需要
+│           ├── pack.mcmeta                 # 必需
+│           └── assets/<module>/lang/       # en_us.json、zh_cn.json
+├── build/
+│   └── libs/
+│       └── <module>-<version>+mc1.20.1.jar # 成品，保留在版本库里
+├── gradle/wrapper/                          # gradle-wrapper.jar + properties
+├── build.gradle.kts
+├── gradle.properties
+├── settings.gradle.kts
+├── gradlew
+├── gradlew.bat
+└── .gitignore
+```
 
-**热键**：`B` 打开面板，`H` 切换 HUD（可在按键设置中修改）。
+### 命名规则
 
-## rotationspoof
+| 项 | 规则 |
+|---|---|
+| 模组目录名 | 与 `mods.toml` 的 `modId` 一致，小写、连字符分隔 |
+| jar 文件名 | `<modId>-<version>+mc<mc版本>.jar`，由 `build.gradle.kts` 生成 |
+| 包名 | `com.<作者>.<module>`，与目录名对应的类名保持驼峰 |
+| 语言文件 | 必须同时提供 `en_us.json` 与 `zh_cn.json`，key 前缀用模组 ID |
 
-客户端 Mixin 模组。改写外发移动包的 yaw/pitch，让其他玩家看到你的角色在转圈，
-而本机视角完全不受影响。
+### 必须提交
 
-- 只动 `ServerboundMovePlayerPacket` 的角度字段，位置数据原样保留，服务端不会回拉。
-- 热键默认 `R`，可在按键设置中修改。
-- 纯客户端，服务端无需安装。
+- `src/` 下全部源码与资源
+- `build.gradle.kts`、`gradle.properties`、`settings.gradle.kts`
+- `gradlew`、`gradlew.bat`、`gradle/wrapper/`
+- `build/libs/<module>-*.jar`（成品，方便直接取用）
+- 模组级 `.gitignore`
 
-**依赖**：仅 Minecraft / Forge 本体，无第三方运行时依赖。
+### 禁止提交
+
+| 内容 | 原因 |
+|---|---|
+| `.gradle/`、`run/`、`out/` | 本地缓存与运行目录 |
+| `build/` 下除 `build/libs/*.jar` 以外的产物 | 体积大、可重新生成 |
+| `libs/` 下的第三方 jar | 无再分发授权 |
+| `.idea/`、`*.iml`、`.vscode/`、`.settings/` | IDE 个人配置 |
+| 日志、崩溃报告、`*.mmdp`、临时脚本 | 排障材料，留在本地 |
+| 任何含口令、token、密钥的文件 | 安全 |
+
+## 新增模组检查清单
+
+1. 目录名 = `modId`，小写下划线/连字符。
+2. 从 `docs/TEMPLATE/` 或复制现有模组（推荐 `rotationspoof`，依赖最少）作为起点。
+3. `src/main/resources/META-INF/mods.toml` 已填 `modId`、`version`、`displayName`。
+4. `pack.mcmeta` 的 `pack_format` 与 1.20.1 匹配。
+5. 语言文件 `en_us.json` 与 `zh_cn.json` 齐全。
+6. 模组目录下有自己的 `.gitignore`（内容见下方统一模板）。
+7. 本 README 的「模组列表」表格补一行。
+8. 运行 `./gradlew build` 通过，成品 jar 出现在 `build/libs/`。
+
+## 统一 `.gitignore` 模板
+
+每个模组目录使用同一份，保证规则一致：
+
+```gitignore
+# Gradle
+.gradle/
+out/
+
+# Build output, EXCEPT the final jar (kept on purpose for release)
+build/*
+!build/libs/
+build/libs/*
+!build/libs/*.jar
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+
+# Minecraft run directory
+run/
+runs/
+
+# OS
+Thumbs.db
+.DS_Store
+```
+
+## 模组列表
+
+| 目录 | 说明 | 运行时依赖 |
+|---|---|---|
+| [`baritone-ui`](baritone-ui/) | Baritone 可视化控制面板与状态 HUD | Baritone 本体（可选，缺失时降级） |
+| [`rotationspoof`](rotationspoof/) | 外发朝向伪装，改写移动包 yaw/pitch | 无 |
 
 ## 构建
 
 ```bash
-cd baritone-ui      # 或 cd rotationspoof
+cd <module>
 ./gradlew build
 ```
 
-产物输出到各自目录的 `build/libs/`。
+产物输出到 `build/libs/`。
 
-## 环境
+## 开发环境
 
 | 项 | 版本 |
 |---|---|
@@ -71,7 +144,6 @@ cd baritone-ui      # 或 cd rotationspoof
 | Kotlin for Forge | 4.11 |
 | Gradle | 8.10.2 |
 
-## 说明
+## 许可
 
-- `baritone-ui/libs/` 下的 Baritone API jar 不纳入版本控制。
-- 各模组的 `build/libs/*.jar` 保留，便于直接取成品。
+见 [LICENSE](LICENSE)。各模组内的第三方依赖遵循其自身授权，不随本仓库分发。
