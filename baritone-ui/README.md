@@ -28,6 +28,15 @@ Baritone 的可视化控制面板与状态 HUD，Minecraft 1.20.1 / Forge 47.4.x
 
 均可在 `选项 → 控制` 中重新绑定。
 
+## 前置模组
+
+安装本模组前，请先装好以下前置：
+
+| 前置 | 是否必需 | 说明 |
+|---|---|---|
+| [Kotlin for Forge](https://www.curseforge.com/minecraft/mc-mods/kotlin-for-forge) | **必需** | 本模组用 Kotlin 编写，`mods.toml` 首行声明 `modLoader="kotlinforforge"`，缺失时游戏无法加载 |
+| [Baritone](https://www.curseforge.com/minecraft/mc-mods/baritone) | 可选 | 缺失时界面照常打开，显示 `not installed`，不会崩溃 |
+
 ## 依赖
 
 **运行时**：Baritone 本体，**可选**。模组通过反射桥接，Baritone 缺失时界面照常打开并显示

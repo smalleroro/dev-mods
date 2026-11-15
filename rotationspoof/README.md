@@ -26,7 +26,13 @@
 
 ## 依赖
 
-仅 Minecraft / Forge 本体。无第三方运行时依赖，服务端无需安装。
+## 前置模组
+
+| 前置 | 是否必需 | 说明 |
+|---|---|---|
+| [Kotlin for Forge](https://www.curseforge.com/minecraft/mc-mods/kotlin-for-forge) | **必需** | 本模组用 Kotlin 编写，`mods.toml` 首行声明 `modLoader="kotlinforforge"`，缺失时游戏无法加载 |
+
+除此之外**无第三方运行时依赖**，服务端无需安装。
 
 ## 构建
 

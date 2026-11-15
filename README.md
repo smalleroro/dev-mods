@@ -84,15 +84,19 @@ baritone-ui/
 1. 模组做什么（一段话）
 2. 功能 / 原理要点
 3. 热键或命令
-4. 运行时依赖与编译依赖
-5. 构建方式与产物路径
+4. **前置模组**（表格：名称、是否必需、缺失时的表现）
+5. 运行时依赖与编译依赖
+6. 构建方式与产物路径
+
+> 用 Kotlin 编写的模组一律以 Kotlin for Forge 为必需前置，`mods.toml` 首行声明
+> `modLoader="kotlinforforge"`，README 中必须写明，不能只写在 `mods.toml` 里。
 
 不要重复根 README 的通用规范，只写该模组特有的信息。
 
 ## 新增模组检查清单
 
 1. 目录名 = `modId`，小写下划线/连字符。
-2. 目录下有 `README.md`，按上节五项填写。
+2. 目录下有 `README.md`，按上节六项填写，其中**前置模组表格**不可省略。
 3. 复制现有模组作为起点（推荐 `rotationspoof`，依赖最少）。
 4. `src/main/resources/META-INF/mods.toml` 已填 `modId`、`version`、`displayName`。
 5. `pack.mcmeta` 的 `pack_format` 与 1.20.1 匹配。
