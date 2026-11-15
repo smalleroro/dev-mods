@@ -20,6 +20,10 @@ build/libs/*
 run/
 runs/
 
+# Third-party jars (compileOnly, not redistributed)
+libs/*.jar
+!libs/.gitkeep
+
 # OS
 Thumbs.db
 .DS_Store

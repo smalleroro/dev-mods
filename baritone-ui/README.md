@@ -32,10 +32,10 @@ Baritone 的可视化控制面板与状态 HUD，Minecraft 1.20.1 / Forge 47.4.x
 
 安装本模组前，请先装好以下前置，**两个都是必需**：
 
-| 前置 | 说明 |
-|---|---|
-| [Kotlin for Forge](https://www.curseforge.com/minecraft/mc-mods/kotlin-for-forge) | 本模组用 Kotlin 编写，`mods.toml` 首行声明 `modLoader="kotlinforforge"`，缺失时游戏无法加载 |
-| [Baritone](https://www.curseforge.com/minecraft/mc-mods/baritone) | 面板与 HUD 的全部功能都靠它。缺失时模组会在加载阶段校验失败并拒绝进入游戏，**不会**静默降级 |
+| 前置 | 是否必需 | 说明 |
+|---|---|---|
+| [Kotlin for Forge](https://www.curseforge.com/minecraft/mc-mods/kotlin-for-forge) | **必需** | 本模组用 Kotlin 编写，`mods.toml` 首行声明 `modLoader="kotlinforforge"`，缺失时游戏无法加载 |
+| [Baritone](https://www.curseforge.com/minecraft/mc-mods/baritone) | **必需** | 面板与 HUD 的全部功能都靠它。缺失时模组会在加载阶段校验失败并拒绝进入游戏，**不会**静默降级 |
 
 ## 依赖
 

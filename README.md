@@ -39,6 +39,8 @@ baritone-ui/
 ├── build/
 │   └── libs/
 │       └── <module>-<version>+mc1.20.1.jar # 成品，保留在版本库里
+├── libs/                                    # 第三方编译依赖，jar 不入库
+│   └── .gitkeep                             # 占位，保证目录存在
 ├── gradle/wrapper/                          # gradle-wrapper.jar + properties
 ├── build.gradle.kts
 ├── gradle.properties
@@ -52,8 +54,7 @@ baritone-ui/
 
 | 项 | 规则 |
 |---|---|
-| 模组目录名 | 与 `mods.toml` 的 `modId` 一致，小写、连字符分隔 |
-| jar 文件名 | `<modId>-<version>+mc<mc版本>.jar`，由 `build.gradle.kts` 生成 |
+| 模组目录名 | 与 `mods.toml` 的 `modId` 一致，小写、连字符分隔 || jar 文件名 | `<modId>-<version>+mc<mc版本>.jar`，由 `build.gradle.kts` 生成 |
 | 包名 | `com.<作者>.<module>`，与目录名对应的类名保持驼峰 |
 | 语言文件 | 必须同时提供 `en_us.json` 与 `zh_cn.json`，key 前缀用模组 ID |
 
@@ -64,6 +65,7 @@ baritone-ui/
 - `build.gradle.kts`、`gradle.properties`、`settings.gradle.kts`
 - `gradlew`、`gradlew.bat`、`gradle/wrapper/`
 - `build/libs/<module>-*.jar`（成品，方便直接取用）
+- `libs/.gitkeep`（占位，保证第三方依赖目录存在）
 - 模组级 `.gitignore`
 
 ### 禁止提交
@@ -92,7 +94,7 @@ baritone-ui/
 
 ## 新增模组检查清单
 
-1. 目录名 = `modId`，小写下划线/连字符。
+1. 目录名 = `modId`，小写、连字符分隔。
 2. 目录下有 `README.md`，按上节六项填写，其中**前置模组表格**不可省略。
 3. 复制现有模组作为起点（推荐 `rotationspoof`，依赖最少）。
 4. `src/main/resources/META-INF/mods.toml` 已填 `modId`、`version`、`displayName`。
@@ -104,7 +106,8 @@ baritone-ui/
 
 ## 统一 `.gitignore` 模板
 
-每个模组目录使用同一份，保证规则一致：
+每个模组目录使用同一份，保证规则一致。模板原文见
+[`docs/gitignore.example`](docs/gitignore.example)，复制到模组目录下改名为 `.gitignore`：
 
 ```gitignore
 # Gradle
@@ -128,6 +131,10 @@ build/libs/*
 # Minecraft run directory
 run/
 runs/
+
+# Third-party jars (compileOnly, not redistributed)
+libs/*.jar
+!libs/.gitkeep
 
 # OS
 Thumbs.db

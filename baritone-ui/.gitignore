@@ -20,8 +20,9 @@ build/libs/*
 run/
 runs/
 
-# Local jars (Baritone compileOnly dependency is not redistributed)
-# libs/*.jar
+# Third-party jars (compileOnly, not redistributed)
+libs/*.jar
+!libs/.gitkeep
 
 # OS
 Thumbs.db

@@ -20,6 +20,8 @@
 │               ├── en_us.json
 │               └── zh_cn.json
 ├── build/libs/<module>-<version>+mc1.20.1.jar
+├── libs/                                   # 第三方编译依赖，jar 不入库
+│   └── .gitkeep
 ├── gradle/wrapper/
 ├── build.gradle.kts
 ├── gradle.properties
@@ -33,7 +35,7 @@
 
 ### 命名
 
-- **目录名** = `mods.toml` 里的 `modId`，小写，使用连字符或下划线，二者不混用。
+- **目录名** = `mods.toml` 里的 `modId`，小写、连字符分隔。不使用下划线。
 - **jar 名** = `<modId>-<version>+mc<mc版本>.jar`，由 Gradle 生成，不手工改名。
 - **包名** = `com.<作者>.<module>`，与目录名一一对应。
 
@@ -49,7 +51,7 @@
 每个模组目录必须有自己的 `README.md`，内容限于该模组：做什么、功能或原理、热键、
 前置模组、依赖、构建方式与产物路径。**不要**重复根 README 的通用规范。
 
-前置模组必须列成表格并标出是否必需。Kotlin 模组的 Kotlin for Forge 永远是必需前置，
+前置模组必须列成表格，并含「是否必需」一列。Kotlin 模组的 Kotlin for Forge 永远是必需前置，
 只在 `mods.toml` 里声明是不够的——用户看 README 时看不到它。
 
 ### 语言文件
@@ -66,6 +68,7 @@
 ### 第三方依赖
 
 - 第三方 jar 放 `libs/`，且 `libs/*.jar` **加入 `.gitignore`**，不在仓库内分发。
+- `libs/` 目录本身保留（放 `.gitkeep` 占位），使用者不必自己新建。
 - 需要的人按 README 说明自行放置。
 
 ## 禁止
