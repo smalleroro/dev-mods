@@ -39,7 +39,7 @@ baritone-ui/
 ├── build/
 │   └── libs/
 │       └── <module>-<version>+mc1.20.1.jar # 成品，保留在版本库里
-├── libs/                                    # 第三方编译依赖，jar 不入库
+├── libs/                                    # 前置模组的 API jar，不入库
 │   └── .gitkeep                             # 占位，保证目录存在
 ├── gradle/wrapper/                          # gradle-wrapper.jar + properties
 ├── build.gradle.kts
@@ -65,7 +65,7 @@ baritone-ui/
 - `build.gradle.kts`、`gradle.properties`、`settings.gradle.kts`
 - `gradlew`、`gradlew.bat`、`gradle/wrapper/`
 - `build/libs/<module>-*.jar`（成品，方便直接取用）
-- `libs/.gitkeep`（占位，保证第三方依赖目录存在）
+- `libs/.gitkeep`（占位，保证前置 API jar 目录存在）
 - 模组级 `.gitignore`
 
 ### 禁止提交
@@ -74,7 +74,7 @@ baritone-ui/
 |---|---|
 | `.gradle/`、`run/`、`out/` | 本地缓存与运行目录 |
 | `build/` 下除 `build/libs/*.jar` 以外的产物 | 体积大、可重新生成 |
-| `libs/` 下的第三方 jar | 无再分发授权 |
+| `libs/` 下的前置模组 jar | 无再分发授权 |
 | `.idea/`、`*.iml`、`.vscode/`、`.settings/` | IDE 个人配置 |
 | 日志、崩溃报告、`*.mmdp`、临时脚本 | 排障材料，留在本地 |
 | 任何含口令、token、密钥的文件 | 安全 |

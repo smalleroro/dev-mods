@@ -20,7 +20,7 @@
 │               ├── en_us.json
 │               └── zh_cn.json
 ├── build/libs/<module>-<version>+mc1.20.1.jar
-├── libs/                                   # 第三方编译依赖，jar 不入库
+├── libs/                                   # 前置模组的 API jar，不入库
 │   └── .gitkeep
 ├── gradle/wrapper/
 ├── build.gradle.kts
@@ -65,11 +65,13 @@
 - `build/libs/<module>-*.jar` **提交进版本库**，方便他人直接取用。
 - `build/` 下的其余产物（中间类、混淆缓存等）不提交。
 
-### 第三方依赖
+### 前置模组的 API jar
 
-- 第三方 jar 放 `libs/`，且 `libs/*.jar` **加入 `.gitignore`**，不在仓库内分发。
+- 编译期需要的前置模组 API jar 放 `libs/`，且 `libs/*.jar` **加入 `.gitignore`**，不在仓库内分发。
 - `libs/` 目录本身保留（放 `.gitkeep` 占位），使用者不必自己新建。
-- 需要的人按 README 说明自行放置。
+- 需要的人按该模组 README 的说明自行放置。
+- 注意：`compileOnly(files(...))` 指向缺失文件时 Gradle 会在类路径快照阶段失败，即使源码
+  只用反射、没有编译期符号引用也一样。README 必须写明文件名。
 
 ## 禁止
 
