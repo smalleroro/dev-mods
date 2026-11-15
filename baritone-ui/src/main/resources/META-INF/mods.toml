@@ -38,10 +38,12 @@ ${mod_description}
 # Baritone -- REQUIRED. The panel and HUD drive Baritone through its API; without
 # it the mod cannot function, so let Forge reject the load up front instead of
 # letting the player reach a half-broken UI. Loading order is AFTER so Baritone
-# has registered its provider by the time the bridge resolves it.
+# has registered its provider by the time the bridge resolves it. Side is CLIENT
+# because both mods run on the client only -- a dedicated server never needs
+# either of them.
 [[dependencies.${mod_id}]]
     modId="baritone"
     mandatory=true
     versionRange="${baritone_version_range}"
     ordering="AFTER"
-    side="BOTH"
+    side="CLIENT"
