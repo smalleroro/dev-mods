@@ -7,6 +7,7 @@
 
 ```
 <module>/
+├── README.md                               # 必需
 ├── src/
 │   └── main/
 │       ├── kotlin/com/<作者>/<module>/     # Kotlin 源码
@@ -43,8 +44,12 @@
   可靠，对 Kotlin 源不稳，混放会导致运行时找不到注入点。
 - 资源统一放 `src/main/resources/`，不另建目录。
 
-### 语言文件
+### 模组 README
 
+每个模组目录必须有自己的 `README.md`，内容限于该模组：做什么、功能或原理、热键、
+依赖、构建方式与产物路径。**不要**重复根 README 的通用规范。
+
+### 语言文件
 - `en_us.json` 与 `zh_cn.json` 必须同时存在且 key 集合一致。
 - key 统一以模组 ID 前缀，例如 `baritoneui.title`、`baritoneui.button.stop`。
 - 热键与分类 key 放 `key.*` 与 `key.categories.*`。

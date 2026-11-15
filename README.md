@@ -26,6 +26,7 @@ dev-mods/
 
 ```
 baritone-ui/
+├── README.md                                # 必需，见下方「模组 README」
 ├── src/
 │   └── main/
 │       ├── kotlin/com/<作者>/<module>/     # Kotlin 源码（Mixin 类除外）
@@ -58,6 +59,7 @@ baritone-ui/
 
 ### 必须提交
 
+- `README.md`（模组目录下的独立说明，见下节）
 - `src/` 下全部源码与资源
 - `build.gradle.kts`、`gradle.properties`、`settings.gradle.kts`
 - `gradlew`、`gradlew.bat`、`gradle/wrapper/`
@@ -75,16 +77,29 @@ baritone-ui/
 | 日志、崩溃报告、`*.mmdp`、临时脚本 | 排障材料，留在本地 |
 | 任何含口令、token、密钥的文件 | 安全 |
 
+## 模组 README
+
+**每个模组目录下必须有 `README.md`**，内容只写这个模组自身的事，方便别人单独查看：
+
+1. 模组做什么（一段话）
+2. 功能 / 原理要点
+3. 热键或命令
+4. 运行时依赖与编译依赖
+5. 构建方式与产物路径
+
+不要重复根 README 的通用规范，只写该模组特有的信息。
+
 ## 新增模组检查清单
 
 1. 目录名 = `modId`，小写下划线/连字符。
-2. 从 `docs/TEMPLATE/` 或复制现有模组（推荐 `rotationspoof`，依赖最少）作为起点。
-3. `src/main/resources/META-INF/mods.toml` 已填 `modId`、`version`、`displayName`。
-4. `pack.mcmeta` 的 `pack_format` 与 1.20.1 匹配。
-5. 语言文件 `en_us.json` 与 `zh_cn.json` 齐全。
-6. 模组目录下有自己的 `.gitignore`（内容见下方统一模板）。
-7. 本 README 的「模组列表」表格补一行。
-8. 运行 `./gradlew build` 通过，成品 jar 出现在 `build/libs/`。
+2. 目录下有 `README.md`，按上节五项填写。
+3. 从 `docs/TEMPLATE/` 或复制现有模组（推荐 `rotationspoof`，依赖最少）作为起点。
+4. `src/main/resources/META-INF/mods.toml` 已填 `modId`、`version`、`displayName`。
+5. `pack.mcmeta` 的 `pack_format` 与 1.20.1 匹配。
+6. 语言文件 `en_us.json` 与 `zh_cn.json` 齐全。
+7. 模组目录下有自己的 `.gitignore`（内容见下方统一模板）。
+8. 本 README 的「模组列表」表格补一行。
+9. 运行 `./gradlew build` 通过，成品 jar 出现在 `build/libs/`。
 
 ## 统一 `.gitignore` 模板
 
