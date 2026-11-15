@@ -93,7 +93,7 @@ baritone-ui/
 
 1. 目录名 = `modId`，小写下划线/连字符。
 2. 目录下有 `README.md`，按上节五项填写。
-3. 从 `docs/TEMPLATE/` 或复制现有模组（推荐 `rotationspoof`，依赖最少）作为起点。
+3. 复制现有模组作为起点（推荐 `rotationspoof`，依赖最少）。
 4. `src/main/resources/META-INF/mods.toml` 已填 `modId`、`version`、`displayName`。
 5. `pack.mcmeta` 的 `pack_format` 与 1.20.1 匹配。
 6. 语言文件 `en_us.json` 与 `zh_cn.json` 齐全。

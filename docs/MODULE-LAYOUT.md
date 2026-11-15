@@ -50,6 +50,7 @@
 依赖、构建方式与产物路径。**不要**重复根 README 的通用规范。
 
 ### 语言文件
+
 - `en_us.json` 与 `zh_cn.json` 必须同时存在且 key 集合一致。
 - key 统一以模组 ID 前缀，例如 `baritoneui.title`、`baritoneui.button.stop`。
 - 热键与分类 key 放 `key.*` 与 `key.categories.*`。
