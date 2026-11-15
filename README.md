@@ -143,7 +143,3 @@ cd <module>
 | Java | 21 |
 | Kotlin for Forge | 4.11 |
 | Gradle | 8.10.2 |
-
-## 许可
-
-见 [LICENSE](LICENSE)。各模组内的第三方依赖遵循其自身授权，不随本仓库分发。
