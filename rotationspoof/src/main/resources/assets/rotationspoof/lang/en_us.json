@@ -1,0 +1,6 @@
+{
+  "key.rotationspoof.toggle": "Toggle Rotation Spoof",
+  "key.categories.rotationspoof": "Rotation Spoof",
+  "rotationspoof.message.enabled": "Rotation spoof: ON",
+  "rotationspoof.message.disabled": "Rotation spoof: OFF"
+}

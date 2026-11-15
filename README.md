@@ -16,7 +16,15 @@ dev-mods/
 │   ├── gradlew / gradlew.bat
 │   └── build/libs/
 │       └── baritoneui-1.0.0+mc1.20.1.jar
-├── rotationspoof-1.0.0+mc1.20.1.jar   # 待整理进独立目录
+├── rotationspoof/               # 外发朝向伪装（客户端 Mixin）
+│   ├── src/main/java/...        # Mixin 注入代码
+│   ├── src/main/kotlin/...      # Kotlin 源码
+│   ├── src/main/resources/...   # mods.toml、mixins.json、语言文件
+│   ├── build.gradle.kts
+│   ├── gradle.properties
+│   ├── gradlew / gradlew.bat
+│   └── build/libs/
+│       └── rotationspoof-1.0.0+mc1.20.1.jar
 └── LICENSE
 ```
 
@@ -33,14 +41,25 @@ Baritone 的可视化控制面板（停止 / 前往 / 挖掘 / 跟随 / 探索 /
 
 **热键**：`B` 打开面板，`H` 切换 HUD（可在按键设置中修改）。
 
+## rotationspoof
+
+客户端 Mixin 模组。改写外发移动包的 yaw/pitch，让其他玩家看到你的角色在转圈，
+而本机视角完全不受影响。
+
+- 只动 `ServerboundMovePlayerPacket` 的角度字段，位置数据原样保留，服务端不会回拉。
+- 热键默认 `R`，可在按键设置中修改。
+- 纯客户端，服务端无需安装。
+
+**依赖**：仅 Minecraft / Forge 本体，无第三方运行时依赖。
+
 ## 构建
 
 ```bash
-cd baritone-ui
+cd baritone-ui      # 或 cd rotationspoof
 ./gradlew build
 ```
 
-产物输出到 `baritone-ui/build/libs/`。
+产物输出到各自目录的 `build/libs/`。
 
 ## 环境
 

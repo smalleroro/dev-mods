@@ -1,0 +1,25 @@
+# Gradle
+.gradle/
+out/
+
+# Build output, EXCEPT the final jar (kept on purpose for release)
+build/*
+!build/libs/
+build/libs/*
+!build/libs/*.jar
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+
+# Minecraft run directory
+run/
+runs/
+
+# OS
+Thumbs.db
+.DS_Store

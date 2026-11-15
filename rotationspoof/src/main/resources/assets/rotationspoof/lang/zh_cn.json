@@ -1,0 +1,6 @@
+{
+  "key.rotationspoof.toggle": "切换旋转伪造",
+  "key.categories.rotationspoof": "旋转伪造",
+  "rotationspoof.message.enabled": "旋转伪造：已开启",
+  "rotationspoof.message.disabled": "旋转伪造：已关闭"
+}
