@@ -37,7 +37,8 @@
 
 - **目录名** = `mods.toml` 里的 `modId`，小写、连字符分隔。不使用下划线。
 - **jar 名** = `<modId>-<version>+mc<mc版本>.jar`，由 Gradle 生成，不手工改名。
-- **包名** = `com.<作者>.<module>`，与目录名一一对应。
+- **包名** = `com.dsh.<module>`，与目录名一一对应。首个包段是组织标识（`dsh`），不是
+  `mod_authors` 里的个人署名，两者不必一致。
 
 ### 源码位置
 

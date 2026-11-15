@@ -55,7 +55,7 @@ baritone-ui/
 | 项 | 规则 |
 |---|---|
 | 模组目录名 | 与 `mods.toml` 的 `modId` 一致，小写、连字符分隔 || jar 文件名 | `<modId>-<version>+mc<mc版本>.jar`，由 `build.gradle.kts` 生成 |
-| 包名 | `com.<作者>.<module>`，与目录名对应的类名保持驼峰 |
+| 包名 | `com.dsh.<module>`，与目录名对应；现有模组统一用 `com.dsh` 前缀 |
 | 语言文件 | 必须同时提供 `en_us.json` 与 `zh_cn.json`，key 前缀用模组 ID |
 
 ### 必须提交

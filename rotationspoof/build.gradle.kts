@@ -82,8 +82,8 @@ dependencies {
     // Kotlin for Forge -- do NOT wrap in fg.deobf()
     implementation("thedarkcolour:kotlinforforge:$kffVersion")
 
-    // Mixin annotation processor: generates the refmap that maps the
-    // development names in @Mixin targets onto runtime (obfuscated) names.
+    // Mixin annotation processor: processes @Mixin / @Inject at compile time.
+    // See the note further down on why it does not produce a refmap here.
     annotationProcessor("org.spongepowered:mixin:0.8.5:processor")
 }
 
@@ -97,8 +97,8 @@ kotlin {
 // The Mixin annotation processor only understands searge/notch obfuscation
 // services, but this project compiles against official (Mojang) mappings — the
 // same names Forge uses at runtime on 1.20.1. A refmap would therefore be
-// meaningless, so @Inject is declared with remap = false and no refmap is
-// generated. If a searge-mapped build is ever needed, switch
+// meaningless, so @Inject is declared with remap = false and the processor emits
+// no refmap for this build. If a searge-mapped build is ever needed, switch
 // mapping_channel to "searge" and drop the remap = false.
 tasks.named<JavaCompile>("compileJava").configure {
     options.encoding = "UTF-8"
