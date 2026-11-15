@@ -44,7 +44,8 @@ Baritone 的可视化控制面板与状态 HUD，Minecraft 1.20.1 / Forge 47.4.x
 
 产物：`build/libs/baritoneui-<version>+mc1.20.1.jar`
 
-放入游戏 `mods/` 目录即可。若同时安装 Baritone，两者均需为 1.20.1 / Forge 版本。
+放入游戏 `mods/` 目录即可。加载时 Forge 会按 `mods.toml` 中声明的版本范围校验前置，
+不满足会在启动日志里提示。
 
 ## 配置
 
